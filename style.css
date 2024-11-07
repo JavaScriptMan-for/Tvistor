@@ -1,0 +1,58 @@
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* устанавливаем высоту div равной высоте экрана */
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(136, 136, 72);
+  }
+  p {
+    text-align: center; /* выравниваем текст внутри p по центру */
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+  }
+  #color-box {
+    border: 3px solid black;
+    width: 50px;
+    height: 50px;
+    margin-right: 25px;
+    border-radius: 8%;
+    box-shadow: 3px 3px 3px black;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  @media screen and (max-width: 560px) {
+    div {
+        flex-direction: column;
+    }
+    p {
+        font-size: 40px;
+    }
+    #color-box {
+        width: 70px;
+        height: 70px;
+    }
+  }
+  @media screen and (max-width: 321px) {
+    p {
+        font-size: 20px;
+    }
+    #color-box {
+        width: 40px;
+        height: 40px;
+    }
+  }
+  @media screen and  (max-width: 160px) {
+    p {
+        font-size: 15px;
+    }
+  }
