@@ -1,34 +1,39 @@
-const browserName = navigator.userAgent;
-if (browserName.includes("Chrome")) {
+
+
 
 const arr_trajectory = ['Правая', 'Левая'];
 const arr_tail = ['Нога', 'Рука']
 const arr_color = ['red', 'blue', 'yellow', 'green'];
 
-const qust = {
-    trajectory: 'Неизвестная',
-    color: 'black',
-    tail: '',
-}
 
+// Создаем новый экземпляр SpeechRecognition
+const recognition = new webkitSpeechRecognition();
 
+// Устанавливаем параметры распознавания
+recognition.lang = 'ru-RU';
+recognition.continuous = true;
+recognition.interimResults = false;
+
+// Начинаем прослушивание
+recognition.start();
+
+// Слушаем результаты распознавания речи
+recognition.onresult = function(event) {
+  const last = event.results.length - 1;
+  const command = event.results[last][0].transcript.toLowerCase();
+
+  // Если распознано слово "старт", выполняем функцию Main
+  if (command.includes('старт')) {
+    Main();
+  }
+};
+
+// Функция Main
 function Main() {
-    document.querySelector('#color-box').innerHTML = '';
-    document.querySelector('#color-box').style.backgroundColor = arr_color[Math.floor(Math.random()*4)]
-    document.querySelector('#p').innerHTML = `${arr_trajectory[Math.floor(Math.random()*2)]} ${arr_tail[Math.floor(Math.random()*2)]}`
-  }
-
-    const recognition = new webkitSpeechRecognition();
-    recognition.lang = 'ru-RU'; 
-    recognition.continuous = true; 
-    recognition.start(); 
-  
-    recognition.onresult = function(event) {
-      const transcript = event.results[event.results.length - 1][0].transcript;
-      if (transcript.toLowerCase().includes("старт")) {
-        Main()
-      }
-    };
-  } else {
-    console.error('Ваш браузер не поддерживает Web Speech API');
-  }
+  document.querySelector('#color-box').innerHTML = '';
+  document.querySelector('#color-box').style.backgroundColor = arr_color[Math.floor(Math.random()*4)];
+  document.querySelector('#p').innerHTML = `${arr_trajectory[Math.floor(Math.random()*2)]} ${arr_tail[Math.floor(Math.random()*2)]}`;
+  setTimeout(()=> {
+    location.reload();
+  },5000)
+}
