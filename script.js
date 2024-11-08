@@ -33,7 +33,8 @@ function Main() {
   document.querySelector('#color-box').innerHTML = '';
   document.querySelector('#color-box').style.backgroundColor = arr_color[Math.floor(Math.random()*4)];
   document.querySelector('#p').innerHTML = `${arr_trajectory[Math.floor(Math.random()*2)]} ${arr_tail[Math.floor(Math.random()*2)]}`;
-  setTimeout(()=> {
-    location.reload();
-  },5000)
 }
+
+setInterval(()=> {
+  location.reload()
+},7000)
