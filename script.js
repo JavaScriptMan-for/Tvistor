@@ -1,32 +1,7 @@
 
-
-
 const arr_trajectory = ['Правая', 'Левая'];
 const arr_tail = ['Нога', 'Рука']
 const arr_color = ['red', 'blue', 'yellow', 'green'];
-
-
-// Создаем новый экземпляр SpeechRecognition
-const recognition = new webkitSpeechRecognition();
-
-// Устанавливаем параметры распознавания
-recognition.lang = 'ru-RU';
-recognition.continuous = true;
-recognition.interimResults = false;
-
-// Начинаем прослушивание
-recognition.start();
-
-// Слушаем результаты распознавания речи
-recognition.onresult = function(event) {
-  const last = event.results.length - 1;
-  const command = event.results[last][0].transcript.toLowerCase();
-
-  // Если распознано слово "старт", выполняем функцию Main
-  if (command.includes('старт')) {
-    Main();
-  }
-};
 
 // Функция Main
 function Main() {
@@ -36,5 +11,5 @@ function Main() {
 }
 
 setInterval(()=> {
-  location.reload()
+  Main();
 },7000)
